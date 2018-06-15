@@ -1,4 +1,4 @@
-# element-pro
+# element-ui-pro
 
 > A Vue.js project
 
