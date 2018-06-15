@@ -1,0 +1,13 @@
+.ep-bottom-dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  transform: translate3d(0, 100%, 0);
+  transition-duration: .36s;
+  z-index: 1999;
+  &.is-open {
+    transform: translateZ(0);
+  }
+}
