@@ -15,13 +15,19 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VueSmartWidget from 'vue-smart-widget'
 import 'vue-smart-widget/lib/vue-smart-widget.css'
 
-import HelloWorld from '../src/index' // development
+import ElementPro from '../src/index' // development
+
+// use ve-charts
+import 've-charts/lib/common' // 公共chuck，引入单个图表前需引入公共包
+import VeBarChart from 've-charts/lib/VeBarChart' // 单个图表chuck
+import 've-charts/lib/ve-charts.min.css' // **按需引入** 同样需要引入样式
 
 Vue.use(ElementUI, {
   size: 'small'
 })
-Vue.use(HelloWorld)
+Vue.use(ElementPro)
 Vue.use(VueSmartWidget)
+Vue.component('VeBarChart', VeBarChart)
 
 Vue.config.productionTip = false
 

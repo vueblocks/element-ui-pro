@@ -151,7 +151,7 @@ export default {
         type: this.datepickerType,
         value: moment(val).format('YYYY-WW')
       })
-      this.$emit('input', val)
+      this.$emit('input', moment(val).format('YYYY-WW'))
     },
     onChangeMonth (val) {
       this.$emit('change', {
@@ -163,6 +163,7 @@ export default {
   },
   created () {
     this.dayValue = this.defaultDate
+    this.$emit('input', this.dayValue)
   }
 }
 </script>

@@ -1,7 +1,9 @@
 import DatepickerGroup from './components/datepicker-group/index'
+import TagpickerGroup from './components/tagpicker-group/index'
 
 const components = [
-  DatepickerGroup
+  DatepickerGroup,
+  TagpickerGroup
 ]
 
 function install (Vue, _) {
@@ -13,7 +15,8 @@ function install (Vue, _) {
 export default install
 
 export {
-  DatepickerGroup
+  DatepickerGroup,
+  TagpickerGroup
 }
 
 if (typeof window !== 'undefined' && window.Vue) {

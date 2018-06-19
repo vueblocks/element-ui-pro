@@ -10,22 +10,27 @@
         </div>
       </el-header>
       <el-menu
-        default-active="1"
+        router
+        :default-active="$route.path"
         class="ep-menu"
         @open="handleOpen"
         @close="handleClose"
         background-color="#001529"
         text-color="#999"
         active-text-color="#fff">
-        <el-menu-item index="1">
+        <el-menu-item index="/dashboard">
           <i class="el-icon-menu"></i>
           <span slot="title">Dashboard</span>
         </el-menu-item>
-        <el-menu-item index="2">
+        <el-menu-item index="/charts">
           <i class="el-icon-document"></i>
           <span slot="title">图表</span>
         </el-menu-item>
-        <el-submenu index="3">
+        <el-menu-item index="/extends">
+          <i class="el-icon-document"></i>
+          <span slot="title">组件扩展</span>
+        </el-menu-item>
+        <!-- <el-submenu index="3">
           <template slot="title">
             <i class="el-icon-location"></i>
             <span>组件扩展</span>
@@ -35,8 +40,8 @@
             <el-menu-item index="1-1">日期选择组</el-menu-item>
           </el-menu-item-group>
           <el-menu-item index="1-2">标签选择组</el-menu-item>
-        </el-submenu>
-        <el-menu-item index="4">
+        </el-submenu> -->
+        <el-menu-item index="/exceptions">
           <i class="el-icon-document"></i>
           <span slot="title">异常页面</span>
         </el-menu-item>
@@ -46,9 +51,9 @@
       <el-header height="64px" class="ep-container__header">
       </el-header>
       <el-main>
-        <transition name="fade-transverse">
+        <!-- <transition name="fade-transverse"> -->
           <router-view />
-        </transition>
+        <!-- </transition> -->
       </el-main>
     </el-container>
   </el-container>
@@ -124,6 +129,10 @@ export default {
   .ep-menu {
     border-right: 0;
     background-color: #001529;
+    .el-menu-item {
+      height: 48px;
+      line-height: 48px;
+    }
     .el-submenu.is-active {
       .el-submenu__title {
         color: #fff !important;
