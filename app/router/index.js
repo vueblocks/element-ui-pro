@@ -3,6 +3,10 @@ import Router from 'vue-router'
 import BasicLayout from '@/layouts/basic-layout/index.vue'
 import Dashboard from '@/views/dashboard/index.vue'
 import Charts from '@/views/charts/index.vue'
+import Tables from '@/views/tables/index.vue'
+import InlineEditTable from '@/views/tables/InlineEdit.vue'
+import TreeTable from '@/views/tables/TreeTable.vue'
+import TreeInlineEdit from '@/views/tables/TreeInlineEdit.vue'
 import Extends from '@/views/extends/index.vue'
 import Exceptions from '@/views/exceptions/index.vue'
 
@@ -26,6 +30,28 @@ const routes = [{
       path: 'charts',
       name: 'pro-charts',
       component: Charts
+    },
+    {
+      path: 'tables',
+      name: 'pro-tables',
+      component: Tables,
+      children: [
+        {
+          path: 'inline-edit',
+          name: 'pro-inline-edit',
+          component: InlineEditTable
+        },
+        {
+          path: 'tree-table',
+          name: 'pro-tree-table',
+          component: TreeTable
+        },
+        {
+          path: 'tree-inline-edit',
+          name: 'pro-tree-inline-edit',
+          component: TreeInlineEdit
+        }
+      ]
     },
     {
       path: 'extends',

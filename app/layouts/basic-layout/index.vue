@@ -6,7 +6,7 @@
           <img :src="require('@/assets/logo.png')" alt="Vue Logo">
         </div>
         <div class="header-title">
-          <span>Element Pro</span>
+          <span>Element UI Pro</span>
         </div>
       </el-header>
       <el-menu
@@ -30,17 +30,15 @@
           <i class="el-icon-document"></i>
           <span slot="title">组件扩展</span>
         </el-menu-item>
-        <!-- <el-submenu index="3">
+        <el-submenu index="/tables">
           <template slot="title">
             <i class="el-icon-location"></i>
-            <span>组件扩展</span>
+            <span>表格</span>
           </template>
-          <el-menu-item-group>
-            <template slot="title">日期类</template>
-            <el-menu-item index="1-1">日期选择组</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item index="1-2">标签选择组</el-menu-item>
-        </el-submenu> -->
+          <el-menu-item index="/tables/inline-edit">行内编辑</el-menu-item>
+          <el-menu-item index="/tables/tree-table">树形表格</el-menu-item>
+          <el-menu-item index="/tables/tree-inline-edit">树形行内编辑</el-menu-item>
+        </el-submenu>
         <el-menu-item index="/exceptions">
           <i class="el-icon-document"></i>
           <span slot="title">异常页面</span>
@@ -109,7 +107,7 @@ export default {
     justify-content: center;
     align-items: center;
     color: #fff;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
   }
 }

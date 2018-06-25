@@ -19,7 +19,8 @@
     "js-cookie": "^2.2.0",
     "ve-charts": "^0.6.7",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-smart-widget": "^0.2.5"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -67,7 +68,6 @@
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
     "vue-loader": "^13.3.0",
-    "vue-smart-widget": "^0.2.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",

@@ -1,9 +1,11 @@
 import DatepickerGroup from './components/datepicker-group/index'
 import TagpickerGroup from './components/tagpicker-group/index'
+import TreeTable from './components/tree-table/index'
 
 const components = [
   DatepickerGroup,
-  TagpickerGroup
+  TagpickerGroup,
+  TreeTable
 ]
 
 function install (Vue, _) {
@@ -16,7 +18,8 @@ export default install
 
 export {
   DatepickerGroup,
-  TagpickerGroup
+  TagpickerGroup,
+  TreeTable
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
