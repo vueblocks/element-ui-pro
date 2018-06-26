@@ -1,10 +1,11 @@
 <template>
   <!-- <smart-widget title="树形表格" collapse> -->
-  <tree-table :data="data" :columns="columns" border></tree-table>
+  <tree-table :data="tableData" :columns="columns" border></tree-table>
   <!-- </smart-widget> -->
 </template>
 
 <script>
+
 export default {
   name: 'TreeTableDemo',
   data () {
@@ -28,7 +29,7 @@ export default {
           value: 'comment'
         }
       ],
-      data: [
+      tableData: [
         {
           id: 0,
           event: '事件1',

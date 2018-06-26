@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import treeToArray from './eval'
+import { treeToArray, recursiveTree } from './helper'
 
 export default {
   name: 'TreeTable',
@@ -61,7 +61,7 @@ export default {
       if (!Array.isArray(this.data)) {
         tmp = [this.data]
       } else {
-        tmp = this.data
+        tmp = this.inlineEdit ? recursiveTree(this.data) : this.data
       }
       const func = this.evalFunc || treeToArray
       const args = this.evalArgs ? Array.concat([tmp, this.expandAll], this.evalArgs) : [tmp, this.expandAll]
