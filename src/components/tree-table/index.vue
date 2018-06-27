@@ -10,21 +10,30 @@
         {{scope.$index}}
       </template>
     </el-table-column>
-    <el-table-column v-else v-for="(column, index) in columns" :key="column.value" :label="column.text" :width="column.width">
-      <template slot-scope="scope">
-        <template v-if="inlineEdit && scope.row._edit">
-          <el-input class="edit-input" size="mini" v-model="scope.row.event" @keyup.enter.native="handleEnterEvent(scope.row)"></el-input>
+    <template v-for="(column, index) in columns" v-else>
+      <slot v-if="column.slot" :name="column.slot"></slot>
+      <el-table-column
+        v-else
+        :key="column.prop"
+        v-bind="column"
+      >
+        <template slot-scope="scope">
+          <template v-if="inlineEdit && column.edit && scope.row._edit ">
+            <el-input class="edit-input" size="mini" v-model="scope.row[column.prop]" @keyup.enter.native="handleEnterEvent(scope.row)"></el-input>
+          </template>
+          <template v-else>
+            <template v-if="column.prop==='event'">
+              <span v-if="index === 0" v-for="space in scope.row._level" class="ms-tree-space" :key="space"></span>
+              <span class="tree-ctrl" v-if="iconShow(index,scope.row)" @click="toggleExpanded(scope.$index)">
+                <i v-if="!scope.row._expanded" class="el-icon-circle-plus-outline"></i>
+                <i v-else class="el-icon-remove-outline"></i>
+              </span>
+            </template>
+            <span>{{ scope.row[column.prop] }}</span>
+          </template>
         </template>
-        <template v-else>
-          <span v-if="index === 0" v-for="space in scope.row._level" class="ms-tree-space" :key="space"></span>
-          <span class="tree-ctrl" v-if="iconShow(index,scope.row)" @click="toggleExpanded(scope.$index)">
-            <i v-if="!scope.row._expanded" class="el-icon-plus"></i>
-            <i v-else class="el-icon-minus"></i>
-          </span>
-          <span>{{ scope.row[column.value] }}</span>
-        </template>
-      </template>
-    </el-table-column>
+      </el-table-column>
+    </template>
     <slot></slot>
   </el-table>
 </template>
@@ -72,7 +81,7 @@ export default {
     showRow: function(row) {
       const show = (row.row.parent ? (row.row.parent._expanded && row.row.parent._show) : true)
       row.row._show = show
-      return show ? 'animation:treeTableShow 1s;-webkit-animation:treeTableShow 1s;' : 'display:none;'
+      return show ? 'animation:treeTableShow .5s;-webkit-animation:treeTableShow .5s;' : 'display:none;'
     },
     // 切换下级是否展开
     toggleExpanded: function(trIndex) {
@@ -110,7 +119,7 @@ export default {
     font-style: normal;
     font-weight: 400;
     line-height: 1;
-    width: 18px;
+    width: 16px;
     height: 14px;
     &::before {
       content: ""
@@ -123,11 +132,9 @@ export default {
   table td {
     line-height: 26px;
   }
-
   .tree-ctrl{
     position: relative;
     cursor: pointer;
     color: #2196F3;
-    margin-left: 18px;
   }
 </style>

@@ -1,18 +1,6 @@
 <template>
   <!-- <smart-widget title="树形表格" collapse> -->
   <tree-table :data="tableData" :columns="columns" border inline-edit @on-inline-enter="confirmEdit">
-    <el-table-column prop="id" label="ID">
-      <template slot-scope="scope">
-        <template v-if="scope.row._edit">
-          <el-input class="edit-input" size="mini" v-model="scope.row.id" @keyup.enter.native="confirmEdit(scope.row)"></el-input>
-        </template>
-        <span v-else>{{ scope.row.id }}</span>
-      </template>
-    </el-table-column>
-    <el-table-column prop="timeLine" label="时间线">
-    </el-table-column>
-    <el-table-column prop="comment" label="备注">
-    </el-table-column>
     <el-table-column fixed="right" label="操作">
       <template slot-scope="scope">
         <el-button v-if="scope.row._edit" type="text" size="small" @click.native.prevent="confirmEdit(scope.row)">
@@ -34,9 +22,28 @@ export default {
     return {
       columns: [
         {
-          text: '事件',
-          value: 'event',
-          width: 200
+          label: '事件',
+          prop: 'event',
+          width: 200,
+          edit: true
+        },
+        {
+          label: 'ID',
+          prop: 'id',
+          width: 200,
+          edit: true
+        },
+        {
+          label: '时间线',
+          prop: 'timeLine',
+          width: 200,
+          edit: true
+        },
+        {
+          label: '备注',
+          prop: 'comment',
+          width: 200,
+          showOverflowTooltip: true
         }
       ],
       tableData: [
@@ -44,7 +51,7 @@ export default {
           id: 0,
           event: '事件1',
           timeLine: 50,
-          comment: '无'
+          comment: 'this is a comment. this is a comment. this is a comment. this is a comment.'
         },
         {
           id: 1,
