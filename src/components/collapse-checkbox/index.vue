@@ -1,6 +1,6 @@
 <template>
-  <div class="cascader-category">
-    <div class="header-row">
+  <div class="collapse-checkbox">
+    <div class="collapse-checkbox__header">
       <div class="header-title">
         <slot name="title"></slot>
       </div>
@@ -14,30 +14,30 @@
         </el-checkbox>
       </div>
     </div>
-    <el-collapse class="cascader-collapse" v-model="activeNames">
+    <el-collapse class="collapse-checkbox__collapse" v-model="activeNames">
       <el-collapse-item
-        v-for="(list, listIndex) in checkBoxList"
-        :key="listIndex"
-        :name="listIndex">
+        v-for="(group, groupIndex) in data"
+        :key="groupIndex"
+        :name="groupIndex">
         <template slot="title">
           <el-checkbox
             class="check-children"
-            v-model="checkChildrenList[listIndex]"
-            :indeterminate="list.isIndeterminate"
-            :checked="list.checked"
-            @change="(val) => handleCheckAllChildren(val, listIndex)"
+            v-model="checkChildrenList[groupIndex]"
+            :indeterminate="group.isIndeterminate"
+            :checked="group.checked"
+            @change="(val) => handleCheckAllChildren(val, groupIndex)"
           >
-            {{ list.title }}
+            {{ group.title }}
           </el-checkbox>
         </template>
         <div>
           <el-checkbox-group
-            v-model="checkList[listIndex]"
+            v-model="checkList[groupIndex]"
             class="check-group"
-            @change="(val) => handleCheckChange(val, listIndex, list.list.length)"
+            @change="(val) => handleCheckChange(val, groupIndex, group.list.length)"
           >
             <el-checkbox
-              v-for="(item, index) in list.list"
+              v-for="(item, index) in group.list"
               class="check-box"
               :key="index"
               :label="item.value"
@@ -50,20 +50,11 @@
       </el-collapse-item>
     </el-collapse>
   </div>
-  <!-- <div slot="footer" class="footer">
-    <span class="select-all">
-      <el-checkbox v-model="checkAll" @change="handleCheckAll">全选</el-checkbox>
-    </span>
-    <span class="dialog-footer">
-      <el-button @click="close" class="btn">关闭</el-button>
-      <el-button @click="submit" type="primary" class="btn submit">确认</el-button>
-    </span>
-  </div> -->
 </template>
 
 <script>
 import Vue from 'vue'
-import _ from 'lodash'
+import { isEmpty } from 'lodash'
 
 export default {
   name: 'CollapseCheckbox',
@@ -76,10 +67,7 @@ export default {
       type: Boolean,
       default: false
     },
-    // handleClose: {
-    //   type: Function
-    // },
-    checkBoxList: {
+    data: {
       type: Array,
       default() {
         return []
@@ -98,7 +86,7 @@ export default {
   computed: {
     totalCheckBoxListLength() {
       let length = 0
-      this.checkBoxList.forEach(item => {
+      this.data.forEach(item => {
         length += item.list.length
       })
       return length
@@ -111,11 +99,11 @@ export default {
       return length
     },
     isEmptyList () {
-      return _.isEmpty(this.checkBoxList)
+      return isEmpty(this.data)
     }
   },
   watch: {
-    checkBoxList() {
+    data() {
       this.__init()
     }
   },
@@ -124,49 +112,33 @@ export default {
   },
   methods: {
     __init(checkAll) {
-      this.checkBoxList.map((v, i) => {
+      this.data.map((v, i) => {
         Vue.set(v, 'isIndeterminate', false)
         return v
       })
       if (checkAll) {
         this.isIndeterminate = false
-        this.checkChildrenList = this.checkBoxList.map(item => true)
-        this.checkList = this.checkBoxList.map((group) => {
+        this.checkChildrenList = this.data.map(item => true)
+        this.checkList = this.data.map((group) => {
           return group.list.map((item, index) => {
             return item.value
           })
         })
       } else {
-        this.checkList = this.checkBoxList.map(item => [])
-        this.checkChildrenList = this.checkBoxList.map(item => false)
+        this.checkList = this.data.map(item => [])
+        this.checkChildrenList = this.data.map(item => false)
       }
     },
-    // cloneData() {
-    //   this.cloneCheckList = _.cloneDeep(this.checkList)
-    //   this.clonecheckChildrenList = _.cloneDeep(this.checkChildrenList)
-    //   this.cloneCheckAll = this.checkAll
-    // },
-    // 点击关闭时还原克隆数据
-    // close() {
-    //   this.checkList = this.cloneCheckList
-    //   this.checkChildrenList = this.clonecheckChildrenList
-    //   this.checkAll = this.cloneCheckAll
-    //   this.handleClose()
-    // },
-    // emit选择结果
     emitResult() {
       let result = []
       this.checkList.map((list) => result.push(...list))
-      // console.log(result)
       this.$emit('change', result)
     },
-
-    // vue检测数组需要替换掉数组
     handleCheckAllChildren(checkAllChildren, index) {
-      this.checkList = this.checkList.map((list, listIndex) => {
-        if (listIndex !== index) return list
+      this.checkList = this.checkList.map((list, groupIndex) => {
+        if (groupIndex !== index) return list
         if (!checkAllChildren) return []
-        return this.checkBoxList[index].list.map((item, index) => {
+        return this.data[index].list.map((item, index) => {
           return item.value
         })
       })
@@ -181,8 +153,8 @@ export default {
       // console.log(length)
       // console.log(this.checkChildrenList)
       // console.groupEnd()
-      this.checkChildrenList = this.checkChildrenList.map((item, listIndex) => {
-        if (index === listIndex) return val.length === this.checkBoxList[index].list.length
+      this.checkChildrenList = this.checkChildrenList.map((item, groupIndex) => {
+        if (index === groupIndex) return val.length === this.data[index].list.length
         return item
       })
       const isIndeterminate = val.length > 0 && val.length < length
@@ -199,7 +171,7 @@ export default {
       this.isIndeterminate = this.totalCheckListLength > 0 && this.totalCheckListLength < this.totalCheckBoxListLength
     },
     setCheckbox (key, index, val) {
-      this.checkBoxList.map((v, i) => {
+      this.data.map((v, i) => {
         if (index === i) {
           Vue.set(v, key, val)
         }
@@ -211,12 +183,18 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .cascader-category {
-    .header-row {
+  .collapse-checkbox {
+    .el-checkbox-group .el-checkbox .el-checkbox__label {
+      width: 140px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 20px;
+      vertical-align: middle;
+    }
+    .collapse-checkbox__header {
       display: flex;
       align-items: center;
       padding-bottom: 15px;
-      border-bottom: 1px solid #ebeef5;
       font-weight: 700;
     }
     .select-all {
@@ -228,8 +206,7 @@ export default {
       letter-spacing: 0;
       line-height: 24px;
     }
-    .cascader-collapse {
-      border-top: none;
+    .collapse-checkbox__collapse {
       .check-children {
         font-weight: 700;
       }

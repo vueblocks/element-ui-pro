@@ -1,18 +1,18 @@
 <template>
-  <!-- <smart-widget title="树形表格" collapse> -->
-  <tree-table :data="tableData" :columns="columns" border inline-edit @on-inline-enter="confirmEdit">
-    <el-table-column fixed="right" label="操作">
-      <template slot-scope="scope">
-        <el-button v-if="scope.row._edit" type="text" size="small" @click.native.prevent="confirmEdit(scope.row)">
-          保存
-        </el-button>
-        <el-button type="text" size="small" @click.native.prevent="scope.row._edit=!scope.row._edit" v-else>
-          编辑
-        </el-button>
-      </template>
-    </el-table-column>
-  </tree-table>
-  <!-- </smart-widget> -->
+  <el-card>
+    <tree-table :data="tableData" :columns="columns" border inline-edit @on-inline-enter="confirmEdit">
+      <el-table-column fixed="right" label="操作">
+        <template slot-scope="scope">
+          <el-button v-if="scope.row._edit" type="text" size="small" @click.native.prevent="confirmEdit(scope.row)">
+            保存
+          </el-button>
+          <el-button type="text" size="small" @click.native.prevent="scope.row._edit=!scope.row._edit" v-else>
+            编辑
+          </el-button>
+        </template>
+      </el-table-column>
+    </tree-table>
+  </el-card>
 </template>
 
 <script>

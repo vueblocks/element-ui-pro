@@ -1,6 +1,8 @@
 <template>
   <!-- <smart-widget title="树形表格" collapse> -->
-  <tree-table :data="tableData" :columns="columns" border></tree-table>
+  <el-card>
+    <tree-table :data="tableData" :columns="columns" border></tree-table>
+  </el-card>
   <!-- </smart-widget> -->
 </template>
 
@@ -12,21 +14,24 @@ export default {
     return {
       columns: [
         {
-          text: '事件',
-          value: 'event',
-          width: 200
+          label: '事件',
+          prop: 'event',
+          edit: true
         },
         {
-          text: 'ID',
-          value: 'id'
+          label: 'ID',
+          prop: 'id',
+          edit: true
         },
         {
-          text: '时间线',
-          value: 'timeLine'
+          label: '时间线',
+          prop: 'timeLine',
+          edit: true
         },
         {
-          text: '备注',
-          value: 'comment'
+          label: '备注',
+          prop: 'comment',
+          showOverflowTooltip: true
         }
       ],
       tableData: [

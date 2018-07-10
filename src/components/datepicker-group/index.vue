@@ -176,7 +176,7 @@ export default {
   }
   .datepicker-group {
     .datepicker-group-datepicker {
-      width: 135px;
+      width: 145px;
       z-index: 11;
       .el-input__inner {
         border-radius: 4px 0 0 4px;
