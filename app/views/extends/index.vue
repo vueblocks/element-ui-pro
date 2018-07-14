@@ -34,17 +34,23 @@
     <br>
     <el-row>
       <el-col>
-        <el-card shadow="never">
+        <el-card class="smart-widget-card">
           <div slot="header" class="clearfix">
             <span>折叠选择框</span>
           </div>
           <collapse-checkbox
-            showCheckAll
+            show-check-all
+            title="热门游戏"
+            v-model="checkList"
             :data="mockList"
+            ref="collapseCheckbox"
             @change="handleChange"
           >
-            <span slot="title">热门游戏</span>
           </collapse-checkbox>
+          <div class="footer">
+            <el-button @click="handleChecked">通过 key 设置</el-button>
+            <el-button @click="handleClear">清空</el-button>
+          </div>
         </el-card>
       </el-col>
     </el-row>
@@ -112,7 +118,8 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      checkList: []
     }
   },
   computed: {
@@ -132,6 +139,12 @@ export default {
     },
     handleChange (val) {
       console.log(val)
+    },
+    handleChecked () {
+      this.$refs.collapseCheckbox.setCheckedKeys(['id5', 'sc2'])
+    },
+    handleClear () {
+      this.$refs.collapseCheckbox.setCheckedKeys([])
     }
   }
 }
@@ -143,5 +156,11 @@ export default {
     float: right;
     padding: 8px 0;
     margin-right: 10px;
+  }
+  // smart-widget style
+  .smart-widget-card {
+    .footer {
+      margin-top: 16px;
+    }
   }
 </style>

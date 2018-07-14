@@ -1,8 +1,11 @@
 <template>
   <div class="collapse-checkbox">
     <div class="collapse-checkbox__header">
-      <div class="header-title">
+      <div class="header-title" v-if="$slots.title">
         <slot name="title"></slot>
+      </div>
+      <div class="header-title" v-else>
+        <span v-text="title"></span>
       </div>
       <div class="select-all">
         <el-checkbox
@@ -16,7 +19,7 @@
     </div>
     <el-collapse class="collapse-checkbox__collapse" v-model="activeNames">
       <el-collapse-item
-        v-for="(group, groupIndex) in data"
+        v-for="(group, groupIndex) in model"
         :key="groupIndex"
         :name="groupIndex">
         <template slot="title">
@@ -43,7 +46,7 @@
               :label="item.value"
               :checked="item.checked"
             >
-              {{item.label}}
+              {{ item.label }}
             </el-checkbox>
           </el-checkbox-group>
         </div>
@@ -59,6 +62,18 @@ import { isEmpty } from 'lodash'
 export default {
   name: 'CollapseCheckbox',
   props: {
+    value: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    data: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
     title: {
       type: String,
       default: ''
@@ -67,15 +82,14 @@ export default {
       type: Boolean,
       default: false
     },
-    data: {
-      type: Array,
-      default() {
-        return []
-      }
+    labelInValue: {
+      type: Boolean,
+      default: false
     }
   },
-  data() {
+  data () {
     return {
+      currentValue: this.value || [],
       activeNames: [0],
       checkList: [],
       checkChildrenList: [],
@@ -84,14 +98,17 @@ export default {
     }
   },
   computed: {
-    totalCheckBoxListLength() {
+    model () {
+      return this.data
+    },
+    totalDataLength () {
       let length = 0
       this.data.forEach(item => {
         length += item.list.length
       })
       return length
     },
-    totalCheckListLength() {
+    totalCheckListLength () {
       let length = 0
       this.checkList.forEach(item => {
         length += item.length
@@ -103,16 +120,13 @@ export default {
     }
   },
   watch: {
-    data() {
-      this.__init()
+    data (val) {
+      this.setCheckList(val)
     }
-  },
-  mounted() {
-    this.__init()
   },
   methods: {
     __init(checkAll) {
-      this.data.map((v, i) => {
+      this.data.map(v => {
         Vue.set(v, 'isIndeterminate', false)
         return v
       })
@@ -129,12 +143,55 @@ export default {
         this.checkChildrenList = this.data.map(item => false)
       }
     },
-    emitResult() {
-      let result = []
-      this.checkList.map((list) => result.push(...list))
-      this.$emit('change', result)
+    setCheckList (val) {
+      const checkList = val.map(group => {
+        const checkedGroup = group.list.map(item => {
+          return item.checked ? item.value : ''
+        })
+        const filterList = checkedGroup.filter(vv => vv !== '')
+        if (filterList.length > 0) {
+          Vue.set(group, 'isIndeterminate', true)
+        }
+        return filterList
+      })
+      this.$nextTick(_ => {
+        this.checkList = checkList
+        this.handleChange()
+      })
     },
-    handleCheckAllChildren(checkAllChildren, index) {
+    handleChange () {
+      const checkedList = this.checkList.reduce((a, b) => a.concat(b))
+      this.data.map(group => {
+        return {
+          ...group,
+          list: group.list.map(item => {
+            Vue.set(item, 'checked', checkedList.includes(item.value))
+            return item
+          })
+        }
+      })
+      this.$emit('input', checkedList)
+      if (this.labelInValue) {
+        const allList = this.data.reduce((a, b) => a.list.concat(b.list))
+        const labelWithValue = allList.filter(v => checkedList.includes(v.value))
+        this.$emit('change', labelWithValue)
+      } else {
+        this.$emit('change', checkedList)
+      }
+      this.isCheckAll()
+    },
+    // 子节点选择
+    handleCheckChange (val, index, length) {
+      this.checkChildrenList = this.checkChildrenList.map((item, groupIndex) => {
+        if (index === groupIndex) return val.length === this.data[index].list.length
+        return item
+      })
+      const isIndeterminate = val.length > 0 && val.length < length
+      this.setGroupKeys('isIndeterminate', index, isIndeterminate)
+      this.handleChange()
+    },
+    // 组选择
+    handleCheckAllChildren (checkAllChildren, index) {
       this.checkList = this.checkList.map((list, groupIndex) => {
         if (groupIndex !== index) return list
         if (!checkAllChildren) return []
@@ -142,42 +199,41 @@ export default {
           return item.value
         })
       })
-      this.setCheckbox('isIndeterminate', index, false)
-      this.isCheckAll()
-      this.emitResult()
+      this.setGroupKeys('isIndeterminate', index, false)
+      this.handleChange()
     },
-    handleCheckChange(val, index, length) {
-      // console.group('handleCheckChange')
-      // console.log(val)
-      // console.log(index)
-      // console.log(length)
-      // console.log(this.checkChildrenList)
-      // console.groupEnd()
-      this.checkChildrenList = this.checkChildrenList.map((item, groupIndex) => {
-        if (index === groupIndex) return val.length === this.data[index].list.length
-        return item
-      })
-      const isIndeterminate = val.length > 0 && val.length < length
-      this.setCheckbox('isIndeterminate', index, isIndeterminate)
-      this.isCheckAll()
-      this.emitResult()
-    },
-    handleCheckAll(checkAll) {
+    // 全选
+    handleCheckAll (checkAll) {
       this.__init(checkAll)
-      this.emitResult()
+      this.handleChange()
     },
-    isCheckAll() {
-      this.checkAll = this.totalCheckBoxListLength === this.totalCheckListLength
-      this.isIndeterminate = this.totalCheckListLength > 0 && this.totalCheckListLength < this.totalCheckBoxListLength
+    isCheckAll () {
+      this.checkAll = this.totalDataLength === this.totalCheckListLength
+      this.isIndeterminate = this.totalCheckListLength > 0 && this.totalCheckListLength < this.totalDataLength
     },
-    setCheckbox (key, index, val) {
+    setGroupKeys (key, index, val) {
       this.data.map((v, i) => {
         if (index === i) {
           Vue.set(v, key, val)
         }
         return v
       })
+    },
+    setCheckedKeys (keys = []) {
+      const model = this.data.map(group => {
+        return {
+          ...group,
+          list: group.list.map(item => {
+            Vue.set(item, 'checked', keys.includes(item.value))
+            return item
+          })
+        }
+      })
+      this.setCheckList(model)
     }
+  },
+  mounted () {
+    this.__init()
   }
 }
 </script>
