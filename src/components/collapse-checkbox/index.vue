@@ -56,7 +56,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import { isEmpty } from 'lodash'
 
 export default {
@@ -127,7 +126,7 @@ export default {
   methods: {
     __init(checkAll) {
       this.data.map(v => {
-        Vue.set(v, 'isIndeterminate', false)
+        this.$set(v, 'isIndeterminate', false)
         return v
       })
       if (checkAll) {
@@ -142,15 +141,30 @@ export default {
         this.checkList = this.data.map(item => [])
         this.checkChildrenList = this.data.map(item => false)
       }
+      if (!isEmpty(this.currentValue)) {
+        this.setCheckedKeys(this.currentValue)
+      }
+    },
+    setCheckedByKeys (keys) {
+      this.data.map(group => {
+        return {
+          ...group,
+          list: group.list.map(item => {
+            this.$set(item, 'checked', keys.includes(item.value))
+            return item
+          })
+        }
+      })
+      return this.data
     },
     setCheckList (val) {
       const checkList = val.map(group => {
-        const checkedGroup = group.list.map(item => {
-          return item.checked ? item.value : ''
-        })
+        const checkedGroup = group.list.map(item => item.checked ? item.value : '')
         const filterList = checkedGroup.filter(vv => vv !== '')
         if (filterList.length > 0) {
-          Vue.set(group, 'isIndeterminate', true)
+          this.$set(group, 'isIndeterminate', true)
+        } else {
+          this.$set(group, 'isIndeterminate', false)
         }
         return filterList
       })
@@ -161,15 +175,7 @@ export default {
     },
     handleChange () {
       const checkedList = this.checkList.reduce((a, b) => a.concat(b))
-      this.data.map(group => {
-        return {
-          ...group,
-          list: group.list.map(item => {
-            Vue.set(item, 'checked', checkedList.includes(item.value))
-            return item
-          })
-        }
-      })
+      this.setCheckedByKeys(checkedList)
       this.$emit('input', checkedList)
       if (this.labelInValue) {
         const allList = this.data.reduce((a, b) => a.list.concat(b.list))
@@ -214,21 +220,13 @@ export default {
     setGroupKeys (key, index, val) {
       this.data.map((v, i) => {
         if (index === i) {
-          Vue.set(v, key, val)
+          this.$set(v, key, val)
         }
         return v
       })
     },
     setCheckedKeys (keys = []) {
-      const model = this.data.map(group => {
-        return {
-          ...group,
-          list: group.list.map(item => {
-            Vue.set(item, 'checked', keys.includes(item.value))
-            return item
-          })
-        }
-      })
+      const model = this.setCheckedByKeys(keys)
       this.setCheckList(model)
     }
   },

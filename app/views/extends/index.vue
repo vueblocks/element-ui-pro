@@ -88,8 +88,7 @@ export default {
           list: [
             {
               label: '阴阳师',
-              value: 'yys',
-              checked: true
+              value: 'yys'
             }, {
               label: '第五人格',
               value: 'id5'
@@ -103,12 +102,10 @@ export default {
           list: [
             {
               label: '魔兽世界',
-              value: 'wow',
-              checked: true
+              value: 'wow'
             }, {
               label: '星际争霸2',
-              value: 'sc2',
-              checked: true
+              value: 'sc2'
             }, {
               label: '守望先锋',
               value: 'overwatch'
