@@ -1,7 +1,13 @@
 import DatepickerGroup from './components/datepicker-group/index'
+import TagpickerGroup from './components/tagpicker-group/index'
+import TreeTable from './components/tree-table/index'
+import CollapseCheckbox from './components/collapse-checkbox/index'
 
 const components = [
-  DatepickerGroup
+  DatepickerGroup,
+  TagpickerGroup,
+  TreeTable,
+  CollapseCheckbox
 ]
 
 function install (Vue, _) {
@@ -13,7 +19,10 @@ function install (Vue, _) {
 export default install
 
 export {
-  DatepickerGroup
+  DatepickerGroup,
+  TagpickerGroup,
+  TreeTable,
+  CollapseCheckbox
 }
 
 if (typeof window !== 'undefined' && window.Vue) {

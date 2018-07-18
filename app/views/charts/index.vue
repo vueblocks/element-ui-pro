@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-main">
+  <div class="charts-main">
     <smart-widget title="柱状图">
       <ve-bar-chart :data="data" :title="title" />
     </smart-widget>
