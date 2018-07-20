@@ -17,12 +17,12 @@
       </el-col>
       <el-col :span="12">
         <smart-widget title="标签选择组" collapse>
-          <tagpicker-group
+          <tag-group-picker
             label="选择"
             :tags="mockTags"
             @change="onChangeTagGroup"
           />
-          <tagpicker-group
+          <tag-group-picker
             label="请选择"
             color="#ff6060"
             :tags="mockTags"

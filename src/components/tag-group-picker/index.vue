@@ -1,5 +1,5 @@
 <template>
-  <section class="tagpicker-group">
+  <section class="tag-group-picker">
     <label class="label" v-if="label !== ''">{{label}}：</label>
     <div
       v-for="(tag, index) in tagList"
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'TagpickerGroup',
+  name: 'TagGroupPicker',
   props: {
     showDefaultTag: {
       type: Boolean,
@@ -78,7 +78,7 @@ export default {
 </script>
 
 <style lang="less">
-  .tagpicker-group {
+  .tag-group-picker {
     height: 36px;
     display: flex;
     flex-direction: row;

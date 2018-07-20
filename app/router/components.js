@@ -7,7 +7,7 @@ export default {
     {
       path: '/components/index',
       name: 'pro-tagpicker-group',
-      component: () => import('@/views/components/TagpickerGroup/index.vue')
+      component: () => import('@/views/components/TagGroupPicker/index.vue')
     }
   ]
 }
