@@ -4,13 +4,13 @@
     <p>可根据标签快速选择，常用于列表、表格过滤。</p>
     <section class="code-preview">
       <h3>代码演示</h3>
-      <demo-block :code="basicCode">
+      <demo-block
+        v-for="(item, index) in demoData"
+        :code="item.code"
+        :key="index"
+      >
         <template slot="component">
-          <tag-group-picker
-            label="选择"
-            :tags="mockTags"
-            @change="onChangeTagGroup"
-          />
+          <tag-group-picker v-bind="item.props" />
         </template>
       </demo-block>
     </section>
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import demoData from '@/constant/tag-group-picker'
 import DemoBlock from '@/components/DemoBlock'
 
 export default {
@@ -26,36 +27,7 @@ export default {
   },
   data () {
     return {
-      mockTags: [
-        {
-          label: '北京',
-          value: 'beijing'
-        },
-        {
-          label: '上海',
-          value: 'shanghai'
-        },
-        {
-          label: '广州',
-          value: 'guangzhou'
-        },
-        {
-          label: '深圳',
-          value: 'shenzhen'
-        }
-      ],
-      basicCode: `
-      <tag-group-picker
-        label="选择"
-        :tags="mockTags"
-        @change="onChangeTagGroup"
-      />
-      `
-    }
-  },
-  methods: {
-    onChangeTagGroup (tag) {
-      console.log(tag)
+      demoData
     }
   }
 }

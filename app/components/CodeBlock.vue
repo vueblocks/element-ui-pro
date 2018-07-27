@@ -1,6 +1,6 @@
 <template>
-  <pre v-hljs>
-    <code :class="lang" v-text="sourcecode"></code>
+  <pre v-hljs="sourcecode">
+    <code :class="lang"></code>
   </pre>
 </template>
 
@@ -69,5 +69,6 @@ export default {
   .hljs {
     overflow-y: auto;
     background: #fefefe;
+    padding: 2em;
   }
 </style>

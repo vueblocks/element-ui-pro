@@ -39,25 +39,20 @@ export default {
     return {
       isShowCode: false
     }
-  },
-  methods: {
-
-  },
-  mounted () {
-    console.log(this.$slots)
   }
 }
 </script>
 
 <style lang="less" scoped>
   .demo-block {
+    margin-bottom: 1em;
     .demo-block__component {
-      padding: 24px;
+      padding: 1.5em;
       border-bottom: 1px solid #eaeefb;
     }
     .btn-block {
       width: 100%;
-      padding: 16px;
+      padding: 1.2em;
       color: #d3dce6;
     }
     .demo-block__code {

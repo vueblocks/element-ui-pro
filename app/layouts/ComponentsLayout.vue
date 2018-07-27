@@ -61,7 +61,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../assets/less/variables.less';
+@import '~@/assets/style/less/variables.less';
 
 .ep-container__header {
   display: flex;
