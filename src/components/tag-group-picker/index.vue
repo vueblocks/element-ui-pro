@@ -4,10 +4,10 @@
     <div
       v-for="(tag, index) in tagList"
       class="ep-tag"
-      :class="{'ep-tag__checked': activeTag===tag.value}"
+      :class="{'ep-tag__checked': activeTag === tag.value}"
       :style="{
-        color: hoverdTag===tag.value ? activeTag===tag.value ? '#fff' : color : '',
-        backgroundColor: activeTag===tag.value ? color : ''
+        color: hoverdTag === tag.value ? activeTag === tag.value ? '#fff' : color : '',
+        backgroundColor: activeTag === tag.value ? color : ''
       }"
       :key="index"
       @click.stop="handleSelect(tag)"
@@ -23,14 +23,6 @@
 export default {
   name: 'TagGroupPicker',
   props: {
-    showDefaultTag: {
-      type: Boolean,
-      default: true
-    },
-    defaultTagValue: {
-      type: String,
-      default: 'all'
-    },
     label: {
       type: String,
       default: ''
@@ -38,7 +30,19 @@ export default {
     tags: {
       type: Array
     },
-    color: String
+    color: String,
+    showDefaultTag: {
+      type: Boolean,
+      default: true
+    },
+    defaultTagValue: {
+      type: String,
+      default: ''
+    },
+    labelInValue: {
+      type: Boolean,
+      default: false
+    }
   },
   data () {
     return {
@@ -51,7 +55,7 @@ export default {
     tagList () {
       const defaultTag = this.showDefaultTag ? [{
         label: '全部',
-        value: 'all'
+        value: ''
       }] : {}
       return [
         ...defaultTag,
@@ -65,7 +69,8 @@ export default {
   methods: {
     handleSelect (tag) {
       this.checkableTag = tag.value
-      this.$emit('change', tag.value)
+      const changeValue = this.labelInValue ? tag : tag.value
+      this.$emit('change', changeValue)
     },
     handleHoverd (isHoverd, tag) {
       this.hoverdTag = isHoverd ? tag.value : ''

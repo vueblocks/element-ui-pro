@@ -17,15 +17,15 @@
           <el-aside width="100%" class="ep-aside">
             <el-menu
               router
-              default-active="2"
+              :default-active="$route.path"
               class="el-menu-vertical-demo"
               @open="handleOpen"
               @close="handleClose">
+              <el-menu-item index="/components/index">
+                <span slot="title">TagGroupPicker 标签选择器</span>
+              </el-menu-item>
               <el-menu-item index="2">
                 <span slot="title">DatepickerGroup 日期选择组</span>
-              </el-menu-item>
-              <el-menu-item index="3">
-                <span slot="title">TagGroupPicker 标签选择器</span>
               </el-menu-item>
               <el-menu-item index="4">
                 <span slot="title">CollapseCheckbox 折叠多选器</span>
