@@ -9,7 +9,8 @@ export const attrColumns = [
   },
   {
     prop: 'type',
-    label: '类型'
+    label: '类型',
+    width: 80
   },
   {
     prop: 'acceptedValues',

@@ -124,7 +124,7 @@ export default {
     }
   },
   methods: {
-    __init(checkAll) {
+    init(checkAll) {
       this.data.map(v => {
         this.$set(v, 'isIndeterminate', false)
         return v
@@ -210,7 +210,7 @@ export default {
     },
     // 全选
     handleCheckAll (checkAll) {
-      this.__init(checkAll)
+      this.init(checkAll)
       this.handleChange()
     },
     isCheckAll () {
@@ -231,7 +231,7 @@ export default {
     }
   },
   mounted () {
-    this.__init()
+    this.init()
   }
 }
 </script>
