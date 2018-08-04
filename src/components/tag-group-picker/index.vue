@@ -27,8 +27,11 @@ import { cloneDeep, omit } from 'lodash'
 export default {
   name: 'TagGroupPicker',
   props: {
-    value: [String, Object, Array],
-    tags: Array,
+    value: [String, Array],
+    tags: {
+      type: Array,
+      required: true
+    },
     label: {
       type: String,
       default: ''
@@ -61,21 +64,24 @@ export default {
     init () {
       const tagList = cloneDeep(this.tags)
       this.tagList = tagList.map((v, i) => {
-        v.checked = false
+        v.checked = this.multiple ? this.value.includes(v.value) : v.value === this.value
         return v
       })
     },
     handleSelect (tag) {
-      let changeValue
+      let [modelValue, changeValue] = ['', '']
       if (this.multiple) {
         tag.checked = !tag.checked
+        modelValue = this.tagList.filter(v => v.checked).map(v => v.value)
         changeValue = this.tagList.filter(v => v.checked).map(v => this.labelInValue ? omit(v, 'checked') : v.value)
       } else {
         this.tagList.map(v => {
           v.checked = v.value === tag.value
         })
+        modelValue = tag.value
         changeValue = this.labelInValue ? omit(tag, 'checked') : tag.value
       }
+      this.$emit('input', modelValue)
       this.$emit('change', changeValue)
     },
     handleHoverd (isHoverd, tag) {
