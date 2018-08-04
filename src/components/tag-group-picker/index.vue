@@ -27,7 +27,10 @@ import { cloneDeep, omit } from 'lodash'
 export default {
   name: 'TagGroupPicker',
   props: {
-    value: [String, Array],
+    value: {
+      type: [String, Array],
+      default: ''
+    },
     tags: {
       type: Array,
       required: true
