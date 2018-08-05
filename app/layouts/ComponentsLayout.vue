@@ -8,7 +8,7 @@
         <span>Element UI Pro</span>
       </div>
       <div class="header-action">
-        <el-button round plain @click="$router.push('/preview/dashboard')">预览</el-button>
+        <el-button round plain size="medium" @click="$router.push('/preview/dashboard')">预览</el-button>
       </div>
     </el-header>
     <el-main class="ep-container__main">
@@ -24,8 +24,8 @@
               <el-menu-item index="/components/charts">
                 <div class="aside-title" slot="title"><strong>Charts</strong> <span>图表</span></div>
               </el-menu-item>
-              <el-menu-item index="/components/tag-group-picker">
-                <div class="aside-title" slot="title"><strong>TagGroupPicker</strong> <span>标签选择器</span></div>
+              <el-menu-item index="/components/tag-select">
+                <div class="aside-title" slot="title"><strong>TagSelect</strong> <span>标签选择器</span></div>
               </el-menu-item>
               <el-menu-item index="/components/datepicker-group">
                 <div class="aside-title" slot="title"><strong>DatepickerGroup</strong> <span>日期选择组</span></div>
@@ -89,6 +89,7 @@ export default {
     display: flex;
     flex: 1;
     justify-content: flex-end;
+    align-items: center;
     padding: 16px 32px;
   }
 }

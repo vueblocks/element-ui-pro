@@ -1,11 +1,11 @@
 import DatepickerGroup from './components/datepicker-group/index'
-import TagGroupPicker from './components/tag-group-picker/index'
+import TagSelect from './components/tag-select/index'
 import TreeTable from './components/tree-table/index'
 import CollapseCheckbox from './components/collapse-checkbox/index'
 
 const components = [
   DatepickerGroup,
-  TagGroupPicker,
+  TagSelect,
   TreeTable,
   CollapseCheckbox
 ]
@@ -20,7 +20,7 @@ export default install
 
 export {
   DatepickerGroup,
-  TagGroupPicker,
+  TagSelect,
   TreeTable,
   CollapseCheckbox
 }

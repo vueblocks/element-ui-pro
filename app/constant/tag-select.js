@@ -26,7 +26,7 @@ export default {
     title: '示例',
     code: `
 <template>
-  <tag-group-picker label="选择" :tags="tags" />
+  <tag-select label="选择" :tags="tags" />
 </template>
 
 <script>
@@ -72,8 +72,8 @@ export default {
     desc:
       '通过配置 type 选择主题，也可以通过配置 color 自定义颜色，color 属性会覆盖主题',
     code: `<template>
-  <tag-group-picker label="选择" :tags="tags" type="success" />
-  <tag-group-picker label="选择" :tags="tags" color="#40b883" />
+  <tag-select label="选择" :tags="tags" type="success" />
+  <tag-select label="选择" :tags="tags" color="#40b883" />
 </template>
 
 <script>
@@ -100,9 +100,9 @@ export default {
     title: '不同尺寸',
     desc: '可选 medium、small、mini',
     code: `<template>
-  <tag-group-picker label="选择" :tags="tags" size="medium" />
-  <tag-group-picker label="选择" :tags="tags" size="small" />
-  <tag-group-picker label="选择" :tags="tags" size="mini" />
+  <tag-select label="选择" :tags="tags" size="medium" />
+  <tag-select label="选择" :tags="tags" size="small" />
+  <tag-select label="选择" :tags="tags" size="mini" />
 </template>
 
 <script>
@@ -136,7 +136,7 @@ export default {
     title: '支持多选',
     desc: '适用于筛选多个类目',
     code: `<template>
-  <tag-group-picker label="选择" :tags="tags" multiple />
+  <tag-select label="选择" :tags="tags" multiple />
 </template>
 `,
     components: [

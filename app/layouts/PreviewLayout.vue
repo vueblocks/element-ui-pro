@@ -48,7 +48,7 @@
     <el-container>
       <el-header height="64px" class="ep-container__header">
         <div class="header-action">
-          <el-button type="text" @click="$router.push('/components/tag-group-picker')">组件</el-button>
+          <el-button type="text" @click="$router.push('/components/tag-select')">组件</el-button>
         </div>
       </el-header>
       <el-main>
@@ -79,76 +79,61 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  // 过渡动画 横向渐变
-  .fade-transverse-leave-active,
-  .fade-transverse-enter-active {
-    transition: all .5s;
-  }
-  .fade-transverse-enter {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  .fade-transverse-leave-to {
-    opacity: 0;
-    transform: translateX(30px);
-  }
+@import '~@/assets/style/common/preview.less';
 
-  .ep-aside__header {
+// 过渡动画 横向渐变
+.fade-transverse-leave-active,
+.fade-transverse-enter-active {
+  transition: all .5s;
+}
+.fade-transverse-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.fade-transverse-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.ep-aside__header {
+  display: flex;
+  background-color: #002140;
+  .header-logo {
+    img {
+      width: 32px;
+      height: 32px;
+      padding: 16px;
+      padding-left: 0;
+    }
+  }
+  .header-title {
     display: flex;
-    background-color: #002140;
-    .header-logo {
-      img {
-        width: 32px;
-        height: 32px;
-        padding: 16px;
-        padding-left: 0;
-      }
-    }
-    .header-title {
-      display: flex;
-      flex: 1;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-size: 20px;
-      font-weight: 500;
-    }
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
   }
+}
 
-  .ep-container__header {
+.ep-container__header {
+  display: flex;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  .header-action {
     display: flex;
-    padding: 0 0 16px 0;
-    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-    .header-action {
-      display: flex;
-      flex: 1;
-      justify-content: flex-end;
-      padding: 16px 32px;
-    }
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 16px 32px;
   }
+}
 
-  .ep-aside {
-    height: 100vh;
-    transition: all .3s;
-    box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
-    background-color: #001529;
-    border-right: 0;
-  }
-
-  .ep-aside /deep/ .ep-menu {
-    border-right: 0;
-    background-color: #001529;
-    .el-menu-item {
-      height: 48px;
-      line-height: 48px;
-    }
-    .el-submenu.is-active {
-      .el-submenu__title {
-        color: #fff !important;
-      }
-    }
-    .el-menu-item.is-active {
-      background-color: #1890ff !important;
-    }
-  }
+.ep-aside {
+  height: 100vh;
+  transition: all .3s;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+  background-color: #001529;
+  border-right: 0;
+}
 </style>

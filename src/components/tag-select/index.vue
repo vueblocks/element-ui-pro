@@ -1,5 +1,5 @@
 <template>
-  <section class="tag-group-picker">
+  <section class="tag-select">
     <label class="label" v-if="label !== ''">{{label}}</label>
     <span class="ep-tag"
       v-for="(tag, index) in tagList"
@@ -25,7 +25,7 @@
 import { cloneDeep, omit } from 'lodash'
 
 export default {
-  name: 'TagGroupPicker',
+  name: 'TagSelect',
   props: {
     value: {
       type: [String, Array],
@@ -100,7 +100,7 @@ export default {
 <style lang="less" scoped>
   @import '~@/assets/style/common/variables.less';
 
-  .tag-group-picker {
+  .tag-select {
     height: 36px;
     display: flex;
     flex-direction: row;

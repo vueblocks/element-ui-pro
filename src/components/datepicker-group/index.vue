@@ -61,13 +61,13 @@ import moment from 'moment'
 export default {
   name: 'DatepickerGroup',
   props: {
+    value: {
+      type: [String, Array, Date]
+    },
     size: String,
     disabledDate: {
       type: Array,
       default () { return [0, 0, 0] }
-    },
-    value: {
-      type: [String, Array, Date]
     },
     disabledEndMonth: {
       type: [Object, Date]

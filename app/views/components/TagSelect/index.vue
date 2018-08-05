@@ -1,6 +1,6 @@
 <template>
   <article class="components-article">
-    <h2>TagGroupPicker 标签选择器</h2>
+    <h2>TagSelect 标签选择器</h2>
     <p class="desc">可根据标签快速选择，常用于列表、表格过滤。</p>
     <section class="compoment-section component-code-preview" v-for="(item, key) in demoData"  :key="key">
       <h3 class="title">{{item.title}}</h3>
@@ -8,7 +8,7 @@
       <demo-block :code="item.code">
         <template slot="component">
           <template v-for="(props, index) in item.components">
-            <tag-group-picker v-bind="props" @change="handleChange" :key="index" v-model="props.vModel" />
+            <tag-select v-bind="props" @change="handleChange" :key="index" v-model="props.vModel" />
           </template>
         </template>
       </demo-block>
@@ -46,7 +46,7 @@
 
 <script>
 import { attrColumns, eventColumns } from '@/constant/components'
-import demoData from '@/constant/tag-group-picker'
+import demoData from '@/constant/tag-select'
 import DemoBlock from '@/components/DemoBlock'
 
 export default {
@@ -59,6 +59,7 @@ export default {
       attrColumns,
       eventColumns,
       attrData: [
+        { attribute: 'value', description: '当前选中的标签值，开启 label-in-value 时为集合，可以使用 v-model 双向绑定数据', type: 'String, Array', acceptedValues: '-', defaultValues: '默认不选中' },
         { attribute: 'label', description: '标签文本', type: 'String', acceptedValues: '-', defaultValues: '-' },
         { attribute: 'tags', description: '标签列表', type: 'Array', acceptedValues: '-', defaultValues: '-' },
         { attribute: 'type', description: '主题', type: 'String', acceptedValues: 'success / warning / danger / info', defaultValues: '-' },
