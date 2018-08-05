@@ -1,7 +1,8 @@
 export const attrColumns = [
   {
     prop: 'attribute',
-    label: '参数'
+    label: '参数',
+    width: 180
   },
   {
     prop: 'description',
@@ -10,7 +11,7 @@ export const attrColumns = [
   {
     prop: 'type',
     label: '类型',
-    width: 80
+    width: 120
   },
   {
     prop: 'acceptedValues',
