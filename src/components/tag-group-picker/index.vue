@@ -98,7 +98,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  @import '~@/assets/style/less/variables.less';
+  @import '~@/assets/style/common/variables.less';
 
   .tag-group-picker {
     height: 36px;

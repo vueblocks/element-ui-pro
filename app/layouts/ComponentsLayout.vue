@@ -21,14 +21,17 @@
               class="el-menu-vertical-demo"
               @open="handleOpen"
               @close="handleClose">
-              <el-menu-item index="/components/index">
-                <span slot="title">TagGroupPicker 标签选择器</span>
+              <el-menu-item index="/components/charts">
+                <div class="aside-title" slot="title"><strong>Charts</strong> <span>图表</span></div>
               </el-menu-item>
-              <el-menu-item index="2">
-                <span slot="title">DatepickerGroup 日期选择组</span>
+              <el-menu-item index="/components/tag-group-picker">
+                <div class="aside-title" slot="title"><strong>TagGroupPicker</strong> <span>标签选择器</span></div>
               </el-menu-item>
-              <el-menu-item index="4">
-                <span slot="title">CollapseCheckbox 折叠多选器</span>
+              <el-menu-item index="/components/datepicker-group">
+                <div class="aside-title" slot="title"><strong>DatepickerGroup</strong> <span>日期选择组</span></div>
+              </el-menu-item>
+              <el-menu-item index="/components/collapse-checkbox">
+                <div class="aside-title" slot="title"><strong>CollapseCheckbox</strong> <span>折叠多选器</span></div>
               </el-menu-item>
             </el-menu>
           </el-aside>
@@ -61,7 +64,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~@/assets/style/less/variables.less';
+@import '~@/assets/style/common/components.less';
 
 .ep-container__header {
   display: flex;
@@ -79,7 +82,7 @@ export default {
     justify-content: center;
     align-items: center;
     color: @vue-blue;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
   }
   .header-action {
@@ -89,9 +92,19 @@ export default {
     padding: 16px 32px;
   }
 }
+// main container
 .ep-container__main {
   padding: 40px 0;
+  .ep-aside {
+    .aside-title {
+      span {
+        font-size: 13px;
+      }
+    }
+  }
   .ep-main__container {
+    margin-left: -1px;
+    border-left: 1px solid #e6e6e6;
     padding: 0 64px;
   }
 }

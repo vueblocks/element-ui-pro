@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-aside width="224px" class="ep-aside">
+    <el-aside width="256px" class="ep-aside">
       <el-header height="64px" class="ep-aside__header">
         <div class="header-logo">
           <img :src="require('@/assets/logo.png')" alt="Vue Logo">
@@ -48,7 +48,7 @@
     <el-container>
       <el-header height="64px" class="ep-container__header">
         <div class="header-action">
-          <el-button type="text" @click="$router.push('/components/index')">组件</el-button>
+          <el-button type="text" @click="$router.push('/components/tag-group-picker')">组件</el-button>
         </div>
       </el-header>
       <el-main>
@@ -110,7 +110,7 @@ export default {
       justify-content: center;
       align-items: center;
       color: #fff;
-      font-size: 16px;
+      font-size: 20px;
       font-weight: 500;
     }
   }
