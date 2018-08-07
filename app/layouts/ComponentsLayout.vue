@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container class="ep-components__container">
     <el-header height="64px" class="ep-container__header">
       <div class="header-logo">
         <img :src="require('@/assets/logo.png')" alt="Vue Logo">
@@ -64,8 +64,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~@/assets/style/common/components.less';
-
 .ep-container__header {
   display: flex;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);

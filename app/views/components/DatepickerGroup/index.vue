@@ -74,5 +74,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~@/assets/style/common/components.less';
 </style>

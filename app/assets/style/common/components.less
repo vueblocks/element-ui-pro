@@ -1,37 +1,38 @@
-@import './variables.less';
-
-// aside menu
-.el-menu-item {
-  height: 48px;
-  line-height: 48px;
-  &:focus,
-  &:hover {
-    background-color: rgb(230, 247, 255);
-  }
-  &.is-active {
-    background-color: rgb(230, 247, 255);
-    &:after {
-      content: "";
-      display: block;
-      width: 3px;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      margin-right: -1px;
-      background-color: @element-primary;
-      z-index: 2001;
+// components styles
+.ep-components__container {
+  // aside menu
+  .el-menu-item {
+    height: 48px;
+    line-height: 48px;
+    &:focus,
+    &:hover {
+      background-color: rgb(230, 247, 255);
+    }
+    &.is-active {
+      background-color: rgb(230, 247, 255);
+      &:after {
+        content: "";
+        display: block;
+        width: 3px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        margin-right: -1px;
+        background-color: @element-primary;
+        z-index: 2001;
+      }
     }
   }
-}
 
-.components-article {
-  width: 100%;
-  .desc {
-    font-size: 16px;
-    // color: #6a8bad;
-  }
-  .compoment-section {
-    margin: 48px 0;
+  .components-article {
+    width: 100%;
+    .desc {
+      font-size: 16px;
+      // color: #6a8bad;
+    }
+    .compoment-section {
+      margin: 48px 0;
+    }
   }
 }

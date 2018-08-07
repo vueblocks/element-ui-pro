@@ -98,8 +98,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  @import '~@/assets/style/common/variables.less';
-
   .tag-select {
     height: 36px;
     display: flex;

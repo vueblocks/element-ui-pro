@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container class="ep-preivew__container">
     <el-aside width="256px" class="ep-aside">
       <el-header height="64px" class="ep-aside__header">
         <div class="header-logo">
@@ -79,8 +79,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~@/assets/style/common/preview.less';
-
 // 过渡动画 横向渐变
 .fade-transverse-leave-active,
 .fade-transverse-enter-active {
