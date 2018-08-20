@@ -23,6 +23,10 @@ export default {
       path: '/components/collapse-checkbox',
       name: 'CollapseCheckbox',
       component: () => import('@/views/components/CollapseCheckbox/index.vue')
+    }, {
+      path: '/components/tag-custom',
+      name: 'TagCustom',
+      component: () => import('@/views/components/TagCustom/index.vue')
     }
   ]
 }
