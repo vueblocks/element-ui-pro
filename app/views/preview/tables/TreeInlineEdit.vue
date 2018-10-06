@@ -1,5 +1,5 @@
 <template>
-  <el-card>
+  <smart-widget title="树形行编辑表格" collapse>
     <tree-table :data="tableData" :columns="columns" border inline-edit @on-inline-enter="confirmEdit">
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
@@ -12,7 +12,7 @@
         </template>
       </el-table-column>
     </tree-table>
-  </el-card>
+  </smart-widget>
 </template>
 
 <script>

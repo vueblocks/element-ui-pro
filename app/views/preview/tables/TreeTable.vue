@@ -1,9 +1,7 @@
 <template>
-  <!-- <smart-widget title="树形表格" collapse> -->
-  <el-card>
+  <smart-widget title="树形表格" collapse>
     <tree-table :data="tableData" :columns="columns" border></tree-table>
-  </el-card>
-  <!-- </smart-widget> -->
+  </smart-widget>
 </template>
 
 <script>
