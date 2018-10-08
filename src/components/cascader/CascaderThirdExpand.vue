@@ -1,4 +1,3 @@
-<!-- 三级目录选择器 -->
 <template>
   <div class="cascade-third-select" v-if="dataLists.length > 0">
 
@@ -49,7 +48,7 @@
 const VALUE = { id: '', name: '', level: '' }
 
 export default {
-  name: 'CascadeThirdSelect',
+  name: 'CascaderThirdExpand',
   components: {},
   filters: {},
   mixins: [],
@@ -62,6 +61,7 @@ export default {
       type: Boolean,
       default: false
     },
+    // 是否一二三级都可选
     ifSelectAll: {
       type: Boolean,
       default: false

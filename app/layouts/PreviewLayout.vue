@@ -44,7 +44,8 @@
             <i class="el-icon-star-off"></i>
             <span>资产管理平台</span>
           </template>
-          <el-menu-item index="/preview/assets/select">选择器</el-menu-item>
+          <el-menu-item index="/preview/assets/cascade">级联选择</el-menu-item>
+          <el-menu-item index="/preview/assets/collpase-panel">指标折叠面板</el-menu-item>
         </el-submenu>
         <el-menu-item index="/preview/exceptions">
           <i class="el-icon-document"></i>

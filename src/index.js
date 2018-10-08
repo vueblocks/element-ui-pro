@@ -4,7 +4,10 @@ import TreeTable from './components/tree-table/index'
 import CollapseCheckbox from './components/collapse-checkbox/index'
 import TagCustom from './components/tag-custom/index'
 // assets
-import CascadeThirdSelect from './components/cascade-third-select/index'
+import CascaderThirdExpand from './components/cascader/CascaderThirdExpand'
+import CascaderCollapse from './components/cascader/CascaderCollapse'
+import CollpasePanel from './components/collpase-panel/index'
+import CollpasePanelDim from './components/collpase-panel-dim/index'
 
 const components = [
   DatepickerGroup,
@@ -13,7 +16,10 @@ const components = [
   CollapseCheckbox,
   TagCustom,
   // assets
-  CascadeThirdSelect
+  CascaderThirdExpand,
+  CascaderCollapse,
+  CollpasePanel,
+  CollpasePanelDim
 ]
 
 function install(Vue, _) {

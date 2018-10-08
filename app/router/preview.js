@@ -42,9 +42,14 @@ export default {
       component: () => import('@/views/preview/assets/index.vue'),
       children: [
         {
-          path: '/preview/assets/select',
-          name: 'pro-assets-select',
-          component: () => import('@/views/preview/assets/select.vue')
+          path: '/preview/assets/cascade',
+          name: 'pro-assets-cascade',
+          component: () => import('@/views/preview/assets/cascade.vue')
+        },
+        {
+          path: '/preview/assets/collpase-panel',
+          name: 'pro-assets-collpase-panel',
+          component: () => import('@/views/preview/assets/collpasePanel.vue')
         }
       ]
     },
