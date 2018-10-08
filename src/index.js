@@ -3,13 +3,17 @@ import TagSelect from './components/tag-select/index'
 import TreeTable from './components/tree-table/index'
 import CollapseCheckbox from './components/collapse-checkbox/index'
 import TagCustom from './components/tag-custom/index'
+// assets
+import CascadeThirdSelect from './components/cascade-third-select/index'
 
 const components = [
   DatepickerGroup,
   TagSelect,
   TreeTable,
   CollapseCheckbox,
-  TagCustom
+  TagCustom,
+  // assets
+  CascadeThirdSelect
 ]
 
 function install(Vue, _) {

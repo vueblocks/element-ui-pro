@@ -37,6 +37,18 @@ export default {
       ]
     },
     {
+      path: '/preview/assets',
+      name: 'pro-assets',
+      component: () => import('@/views/preview/assets/index.vue'),
+      children: [
+        {
+          path: '/preview/assets/select',
+          name: 'pro-assets-select',
+          component: () => import('@/views/preview/assets/select.vue')
+        }
+      ]
+    },
+    {
       path: '/preview/extends',
       name: 'pro-extends',
       component: () => import('@/views/preview/extends/index.vue')

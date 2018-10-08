@@ -39,6 +39,13 @@
           <el-menu-item index="/preview/tables/tree-table">树形表格</el-menu-item>
           <el-menu-item index="/preview/tables/tree-inline-edit">树形行内编辑</el-menu-item>
         </el-submenu>
+        <el-submenu index="/preview/assets">
+          <template slot="title">
+            <i class="el-icon-star-off"></i>
+            <span>资产管理平台</span>
+          </template>
+          <el-menu-item index="/preview/assets/select">选择器</el-menu-item>
+        </el-submenu>
         <el-menu-item index="/preview/exceptions">
           <i class="el-icon-document"></i>
           <span slot="title">异常页面</span>
@@ -53,7 +60,7 @@
       </el-header>
       <el-main>
         <!-- <transition name="fade-transverse"> -->
-          <router-view />
+        <router-view/>
         <!-- </transition> -->
       </el-main>
     </el-container>
@@ -63,9 +70,8 @@
 <script>
 export default {
   name: 'PreviewLayout',
-  data () {
-    return {
-    }
+  data() {
+    return {}
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -84,10 +90,12 @@ export default {
 .fade-transverse-enter-active {
   transition: all .5s;
 }
+
 .fade-transverse-enter {
   opacity: 0;
   transform: translateX(-30px);
 }
+
 .fade-transverse-leave-to {
   opacity: 0;
   transform: translateX(30px);
