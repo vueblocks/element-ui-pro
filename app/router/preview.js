@@ -50,6 +50,11 @@ export default {
           path: '/preview/assets/collpase-panel',
           name: 'pro-assets-collpase-panel',
           component: () => import('@/views/preview/assets/collpasePanel.vue')
+        },
+        {
+          path: '/preview/assets/collpase-panel',
+          name: 'pro-assets-collpase-panel',
+          component: () => import('@/views/preview/assets/collpasePanel.vue')
         }
       ]
     },
