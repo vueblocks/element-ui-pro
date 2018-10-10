@@ -8,6 +8,8 @@ import CascaderThirdExpand from './components/cascader/CascaderThirdExpand'
 import CascaderCollapse from './components/cascader/CascaderCollapse'
 import CollpasePanel from './components/collpase-panel/index'
 import CollpasePanelDim from './components/collpase-panel-dim/index'
+import ConditionSelect from './components/condition-select/index'
+import PageBreadcrumb from './components/page-breadcrumb/index'
 
 const components = [
   DatepickerGroup,
@@ -19,7 +21,9 @@ const components = [
   CascaderThirdExpand,
   CascaderCollapse,
   CollpasePanel,
-  CollpasePanelDim
+  CollpasePanelDim,
+  ConditionSelect,
+  PageBreadcrumb
 ]
 
 function install(Vue, _) {

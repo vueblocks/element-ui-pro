@@ -1,5 +1,8 @@
 <template>
   <div>
+    <!-- 面包屑 -->
+    <page-breadcrumb :routes="['bigData', '选择器']"/>
+    <!-- 三级目录选择 -->
     <el-row type="flow" :gutter="32">
       <el-col :span="12">
         <smart-widget title="三级目录" collapse>
@@ -21,7 +24,8 @@
         </smart-widget>
       </el-col>
     </el-row>
-    <el-row class="m-t-20" type="flow">
+    <!-- 折叠多选 -->
+    <el-row type="flow" class="m-t-20">
       <smart-widget title="折叠多选" collapse>
         <cascader-collapse
           :checkBoxList="checkBoxLists"
@@ -29,14 +33,36 @@
         />
       </smart-widget>
     </el-row>
+    <!-- 平铺单选 -->
+    <el-row type="flow" :gutter="32" class="m-t-20">
+      <el-col :span="12">
+        <smart-widget title="平铺单选（可取消）" collapse>
+          <condition-select
+            :name="'百家姓'"
+            :dataList="[{label:'赵', value:'1'},{label:'钱', value:'2'},{label:'孙', value:'3'},{label:'李', value:'4'}]"
+          />
+        </smart-widget>
+      </el-col>
+      <el-col :span="12">
+        <smart-widget title="平铺单选（默认选中，不可取消）" collapse>
+          <condition-select
+            :name="'百家姓'"
+            :value="'1'"
+            :ifCancel=false
+            :dataList="[{label:'赵', value:'1'},{label:'钱', value:'2'},{label:'孙', value:'3'},{label:'李', value:'4'}]"
+          />
+        </smart-widget>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
+import PageBreadcrumb from '../../../../src/components/page-breadcrumb/index'
 
 export default {
   name: 'AssetsSelect',
-  components: {},
+  components: { PageBreadcrumb },
   filters: {},
   mixins: [],
   props: {},

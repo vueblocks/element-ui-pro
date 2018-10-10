@@ -27,7 +27,7 @@ export default {
     },
     dataList: {
       required: true,
-      default: []
+      default: [{ label: '', value: '' }]
     },
     value: {
       required: false,
@@ -59,7 +59,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .condition-select {
   line-height: 50px;
   font-size: 14px;
